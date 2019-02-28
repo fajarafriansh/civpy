@@ -1,3 +1,7 @@
+"""
+Copyright (c) 2019, Matt Pewsey
+"""
+
 import propy
 
 __all__ = ['LoadCase']
@@ -15,14 +19,17 @@ class LoadCase(object):
         A list of :class:`.NodeLoad` to apply with the load case.
     elem_loads : list
         A list of :class:`.ElementLoad` to apply with the load case.
+    weather : :class:`.WeatherCase`
+        The applied weather case.
     """
     # Custom properties
     name = propy.str_property('name')
 
-    def __init__(self, name, node_loads=[], elem_loads=[]):
+    def __init__(self, name, node_loads=[], elem_loads=[], weather=None):
         self.name = name
         self.node_loads = node_loads
         self.elem_loads = elem_loads
+        self.weather = weather
 
     __repr__ = propy.repr_method('name', 'node_loads', 'elem_loads')
 

@@ -1,4 +1,7 @@
-from __future__ import division
+"""
+Copyright (c) 2019, Matt Pewsey
+"""
+
 import propy
 import numpy as np
 import matplotlib.pyplot as plt

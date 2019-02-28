@@ -1,3 +1,7 @@
+"""
+Copyright (c) 2019, Matt Pewsey
+"""
+
 import propy
 
 __all__ = ['ElementGroup']

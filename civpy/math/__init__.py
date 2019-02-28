@@ -3,7 +3,16 @@
 Math (:mod:`civpy.math`)
 ========================
 
-Contains math functions.
+Contains math classes and functions.
+
+
+Geometry
+========
+.. autosummary::
+    :toctree: generated/
+
+    Ellipse
+
 
 Linear Algebra
 ==============
@@ -25,5 +34,6 @@ Optimization
     fsolve
 """
 
+from .ellipse import *
 from .linalg import *
 from .optimize import *

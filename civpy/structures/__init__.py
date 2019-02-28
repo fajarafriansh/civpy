@@ -26,6 +26,7 @@ Loads
     LoadCase
     NodeLoad
     ElementLoad
+    WeatherCase
 
 
 Element Functions
@@ -60,3 +61,4 @@ from .material import *
 from .node_load import *
 from .node import *
 from .structure import *
+from .weather_case import *
