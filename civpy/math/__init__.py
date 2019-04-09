@@ -37,3 +37,4 @@ Optimization
 from .ellipse import *
 from .linalg import *
 from .optimize import *
+from .poly import *

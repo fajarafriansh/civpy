@@ -28,4 +28,7 @@ class Material(object):
         self.elasticity = elasticity
         self.rigidity = rigidity
 
-    __repr__ = propy.repr_method('name', 'elasticity', 'rigidity')
+    def __repr__(self):
+        s = ('name', 'elasticity', 'rigidity')
+        s = ('{}={!r}'.format(k, getattr(self, k)) for k in s)
+        return '{}({})'.format(type(self).__name__, ', '.join(s))

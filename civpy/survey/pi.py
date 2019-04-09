@@ -34,4 +34,7 @@ class PI(np.ndarray):
         if obj is None: return
         self.radius = getattr(obj, 'radius', 0)
 
-    __repr__ = propy.repr_method('x', 'y', 'z', 'radius')
+    def __repr__(self):
+        s = ('x', 'y', 'z', 'radius')
+        s = ('{}={!r}'.format(k, getattr(self, k)) for k in s)
+        return '{}({})'.format(type(self).__name__, ', '.join(s))

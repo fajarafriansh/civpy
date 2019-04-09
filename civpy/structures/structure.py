@@ -91,6 +91,16 @@ class Structure(object):
         self.symmetry = symmetry
         self.build = {}
 
+    def __repr__(self):
+        s = (
+            'name={!r}'.format(self.name),
+            'num_nodes={!r}'.format(len(self.nodes)),
+            'num_elements={!r}'.format(len(self.elements)),
+            'symmetry={!r}'.format(self.symmetry)
+        )
+
+        return '{}({})'.format(type(self).__name__, ', '.join(s))
+
     def _create_build(self, load_cases=[]):
         """
         Builds the structure and places all components in the object

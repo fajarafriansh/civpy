@@ -54,13 +54,13 @@ class NodeLoad(np.ndarray):
         self._node_ref = None
 
     def __repr__(self):
-        s = [
+        s = (
             'node={!r}'.format(self.node),
             'forces={!r}'.format((self.fx, self.fy, self.fz)),
             'moments={!r}'.format((self.mx, self.my, self.mz)),
             'defl={!r}'.format((self.dx, self.dy, self.dz)),
             'rot={!r}'.format((self.rx, self.ry, self.rz))
-        ]
+        )
 
         return '{}({})'.format(type(self).__name__, ', '.join(s))
 

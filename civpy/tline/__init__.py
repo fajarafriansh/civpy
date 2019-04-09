@@ -41,3 +41,4 @@ Galloping Functions
 
 from .catenary import *
 from .galloping import *
+from .wire import *

@@ -31,4 +31,7 @@ class SurveyPoint(np.ndarray):
         if obj is None: return
         self.meta = getattr(obj, 'meta', {})
 
-    __repr__ = propy.repr_method('x', 'y', 'z', 'meta')
+    def __repr__(self):
+        s = ('x', 'y', 'z', 'meta')
+        s = ('{}={!r}'.format(k, getattr(self, k)) for k in s)
+        return '{}({})'.format(type(self).__name__, ', '.join(s))

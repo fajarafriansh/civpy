@@ -77,7 +77,7 @@ def rotation_matrix3(angle_x=0, angle_y=0, angle_z=0):
     return r
 
 
-def rotate2(x, angle, origin=(0, 0)):
+def rotate2(x, angle, origin=None):
     """
     Rotates the input 2D vectors by the specified angle.
 
@@ -90,13 +90,19 @@ def rotate2(x, angle, origin=(0, 0)):
     origin : array
         The point about which the rotation will be performed.
     """
-    origin = np.asarray(origin)
-    x = np.asarray(x) - origin
+    x = np.asarray(x)
     r = rotation_matrix2(angle)
+
+    if origin is None:
+        return x.dot(r.T)
+
+    origin = np.asarray(origin)
+    x = x - origin
+
     return x.dot(r.T) + origin
 
 
-def rotate3(x, angle_x=0, angle_y=0, angle_z=0, origin=(0, 0, 0)):
+def rotate3(x, angle_x=0, angle_y=0, angle_z=0, origin=None):
     """
     Rotates the input 3D vectors by the specified angles.
 
@@ -110,7 +116,13 @@ def rotate3(x, angle_x=0, angle_y=0, angle_z=0, origin=(0, 0, 0)):
     origin : array
         The point about which the rotation will be performed.
     """
-    origin = np.asarray(origin)
-    x = np.asarray(x) - origin
+    x = np.asarray(x)
     r = rotation_matrix3(angle_x, angle_y, angle_z)
+
+    if origin is None:
+        return x.dot(r.T)
+
+    origin = np.asarray(origin)
+    x = x - origin
+
     return x.dot(r.T) + origin

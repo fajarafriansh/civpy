@@ -50,8 +50,10 @@ class SurveyStake(np.ndarray):
         self._type = getattr(obj, '_type', 'xy')
         self.meta = getattr(obj, 'meta', {})
 
-    __repr__ = propy.repr_method('_type', 'x', 'y', 'z', 'station', 'offset',
-                                 'lock_z', 'meta')
+    def __repr__(self):
+        s = ('_type', 'x', 'y', 'z', 'station', 'offset', 'lock_z', 'meta')
+        s = ('{}={!r}'.format(k, getattr(self, k)) for k in s)
+        return '{}({})'.format(type(self).__name__, ', '.join(s))
 
     @classmethod
     def init_xy(cls, x, y, z=0, height=0, rotation=0, lock_z=False, **kwargs):

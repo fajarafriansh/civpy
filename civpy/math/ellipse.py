@@ -6,7 +6,7 @@ import copy
 import propy
 import numpy as np
 import scipy.optimize
-from math import cos, sin, atan2
+from math import cos, sin, atan2, ceil
 from shapely.geometry import Polygon
 from .linalg import rotate2
 
@@ -44,7 +44,10 @@ class Ellipse(np.ndarray):
         self.height = getattr(obj, 'height', 0)
         self.rotation = getattr(obj, 'rotation', 0)
 
-    __repr__ = propy.repr_method('x', 'y', 'width', 'height', 'rotation')
+    def __repr__(self):
+        s = ('x', 'y', 'width', 'height', 'rotation')
+        s = ('{}={!r}'.format(k, getattr(self, k)) for k in s)
+        return '{}({})'.format(type(self).__name__, ', '.join(s))
 
     def copy(self):
         return copy.copy(self)
@@ -80,7 +83,7 @@ class Ellipse(np.ndarray):
         b = 0.5 * self.height
 
         p = self.perimeter()
-        n = int(np.ceil(p / step))
+        n = int(ceil(p / step))
         ang = np.linspace(0, 2*np.pi, n)
         p = np.column_stack([a * np.cos(ang), b * np.sin(ang)])
         x0 = np.asarray(self)

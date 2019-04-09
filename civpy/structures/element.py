@@ -225,10 +225,11 @@ class Element(object):
         self.inode_ref = None
         self.jnode_ref = None
 
-    __repr__ = propy.repr_method(
-        'name', 'inode', 'jnode', 'group', 'symmetry', 'roll',
-        'imx_free', 'imy_free', 'imz_free', 'jmx_free', 'jmy_free', 'jmz_free'
-    )
+    def __repr__(self):
+        s = ('name', 'inode', 'jnode', 'group', 'symmetry', 'roll',
+            'imx_free', 'imy_free', 'imz_free', 'jmx_free', 'jmy_free', 'jmz_free')
+        s = ('{}={!r}'.format(k, getattr(self, k)) for k in s)
+        return '{}({})'.format(type(self).__name__, ', '.join(s))
 
     def __str__(self):
         return self.name

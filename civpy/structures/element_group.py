@@ -28,4 +28,7 @@ class ElementGroup(object):
         self.section = section
         self.material = material
 
-    __repr__ = propy.repr_method('name', 'section', 'material')
+    def __repr__(self):
+        s = ('name', 'section', 'material')
+        s = ('{}={!r}'.format(k, getattr(self, k)) for k in s)
+        return '{}({})'.format(type(self).__name__, ', '.join(s))

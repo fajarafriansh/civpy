@@ -75,8 +75,11 @@ class Node(np.ndarray):
         self.my_free = getattr(obj, 'my_free', True)
         self.mz_free = getattr(obj, 'mz_free', True)
 
-    __repr__ = propy.repr_method('name', 'x', 'y', 'z', 'symmetry',
-        'fx_free', 'fy_free', 'fz_free', 'mx_free', 'my_free', 'mz_free')
+    def __repr__(self):
+        s = ('name', 'x', 'y', 'z', 'symmetry',
+            'fx_free', 'fy_free', 'fz_free', 'mx_free', 'my_free', 'mz_free')
+        s = ('{}={!r}'.format(k, getattr(self, k)) for k in s)
+        return '{}({})'.format(type(self).__name__, ', '.join(s))
 
     def __str__(self):
         return self.name

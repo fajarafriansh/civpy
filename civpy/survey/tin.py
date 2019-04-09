@@ -48,7 +48,10 @@ class TIN(object):
         self.step = step
         self._create_triangulation(points, grid)
 
-    __repr__ = propy.repr_method('name')
+    def __repr__(self):
+        s = ('name',)
+        s = ('{}={!r}'.format(k, getattr(self, k)) for k in s)
+        return '{}({})'.format(type(self).__name__, ', '.join(s))
 
     def _create_triangulation(self, points, grid):
         """

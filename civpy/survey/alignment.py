@@ -51,8 +51,10 @@ class Alignment(object):
         self.view_offset = view_offset
         self.view_margin = view_margin
 
-    __repr__ = propy.repr_method('name', 'grid', 'view_offset', 'view_margin',
-                                 'pis', 'stakes')
+    def __repr__(self):
+        s = ('name', 'grid', 'view_offset', 'view_margin', 'pis', 'stakes')
+        s = ('{}={!r}'.format(k, getattr(self, k)) for k in s)
+        return '{}({})'.format(type(self).__name__, ', '.join(s))
 
     def set_stake_xy(self):
         """

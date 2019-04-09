@@ -21,17 +21,27 @@ class LoadCase(object):
         A list of :class:`.ElementLoad` to apply with the load case.
     weather : :class:`.WeatherCase`
         The applied weather case.
+    wind_azimuth : float
+        The wind azimuth.
+    wire_condition : {'initial', 'creep'}
+        The applied wire condition.
     """
     # Custom properties
     name = propy.str_property('name')
 
-    def __init__(self, name, node_loads=[], elem_loads=[], weather=None):
+    def __init__(self, name, node_loads=[], elem_loads=[], weather=None,
+                 wind_azimuth=None, wire_condition=None):
         self.name = name
         self.node_loads = node_loads
         self.elem_loads = elem_loads
         self.weather = weather
+        self.wind_azimuth = wind_azimuth
+        self.wire_condition = wire_condition
 
-    __repr__ = propy.repr_method('name', 'node_loads', 'elem_loads')
+    def __repr__(self):
+        s = ('name', 'node_loads', 'elem_loads')
+        s = ('{}={!r}'.format(k, getattr(self, k)) for k in s)
+        return '{}({})'.format(type(self).__name__, ', '.join(s))
 
     def set_nodes(self, ndict):
         """
